@@ -162,7 +162,7 @@ function setActiveEvent() {
     let closestDistance = Infinity;
 
     // Adjust this value to change the activation point
-    const activationPoint = window.innerHeight * 0.20;  // 15% from the top of the viewport
+    const activationPoint = window.innerHeight * 0.25;  // 15% from the top of the viewport
 
     events.forEach(event => {
         const rect = event.getBoundingClientRect();
