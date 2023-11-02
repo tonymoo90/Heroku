@@ -1,37 +1,23 @@
-transactions.forEach(transaction => {
+const createTransactionItem = (transaction) => {
     const transactionItem = document.createElement('div');
-    transactionItem.className = 'transaction-item';
-    
-    const timeDiv = document.createElement('div');
-    timeDiv.className = 'time';
-    transactionItem.appendChild(timeDiv);
-
     const circle = document.createElement('div');
     circle.className = 'circle';
-    transactionItem.appendChild(circle);
-    
+
     const details = document.createElement('div');
     details.className = 'headline';
 
-    timeDiv.innerText = formatDate(transaction.date);
-
-    if (transaction.source === 'ARK Trades') {
+    // Handle Tesla transactions
+    if (transaction.direction) {
         const transactionDirection = transaction.direction === 'Buy' ? 'Bought' : 'Sold';
-        
-        if (transaction.direction === 'Buy') {
-            circle.classList.add('acquired');
-        } else if (transaction.direction === 'Sell') {
-            circle.classList.add('disposed');
-        }
+        timeDiv.innerText = formatDate(transaction.effective_date);
 
+        circle.classList.add(transaction.direction === 'Buy' ? 'acquired' : 'disposed');
         details.innerText = `${transactionDirection} ${transaction.shares} shares of Tesla for ${transaction.value}`;
-    } else if (transaction.source === 'Insider Transactions') {
-        if (transaction.transactionAcquiredDisposed === 'A') {
-            circle.classList.add('acquired');
-        } else if (transaction.transactionAcquiredDisposed === 'D') {
-            circle.classList.add('disposed');
-        }
+    } else {
+        // Handle other transactions
+        timeDiv.innerText = formatDate(transaction.transactionDate);
 
+        circle.classList.add(transaction.transactionAcquiredDisposed === 'A' ? 'acquired' : 'disposed');
         details.innerText = `${transaction.ownerName} `;
 
         const insider = insiderData.find(insider => insider.ownerName === transaction.ownerName);
@@ -54,6 +40,10 @@ transactions.forEach(transaction => {
         details.appendChild(document.createTextNode(`${transaction.transactionAmount} at ${transaction.transactionPrice}`));
     }
 
+    transactionItem.appendChild(circle);
     transactionItem.appendChild(details);
     timeline.appendChild(transactionItem);
-});
+};
+
+// Assuming you have a list of transactions, you can loop through them:
+transactions.forEach(createTransactionItem);
