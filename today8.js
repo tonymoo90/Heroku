@@ -73,7 +73,7 @@ async function fetchNews() {
         const data = await response.json();
       
         const todaysDate = new Date();
-        todaysDate.setDate(todaysDate.getDate() - 10);  // Set it to yesterday
+        todaysDate.setDate(todaysDate.getDate() - 11);  // Set it to yesterday
         todaysDate.setHours(0, 0, 0, 0);  // Set hours, minutes, seconds and milliseconds to 0
     
         // Filter articles that are published today
