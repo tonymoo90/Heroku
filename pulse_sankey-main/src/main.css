@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.mobile-view {
+  transform: rotate(-90deg) !important;
+  transform-origin: center;
+  margin-bottom: 30px !important;
+}
+
+@media (max-width: 680px) {
+  .mobile-view {
+    margin-top: 220px;
+    margin-bottom: 30px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .mobile-view {
+    margin-top: 300px;
+    margin-bottom: 30px !important;
+  }
+}
+
+@media (max-width: 440px) {
+  .mobile-view {
+    margin-top: 330px;
+    margin-bottom: 30px !important;
+  }
+}
