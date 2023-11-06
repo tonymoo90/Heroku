@@ -74,7 +74,7 @@ async function fetchData() {
         // Get yesterday's date range
         const today = new Date();
         const yesterday = new Date(today);
-        yesterday.setDate(yesterday.getDate() - 1); // Move to yesterday
+        yesterday.setDate(yesterday.getDate()); // Move to yesterday
 
         // Set to start of yesterday
         const startOfYesterday = new Date(yesterday.setHours(0, 0, 0, 0));
